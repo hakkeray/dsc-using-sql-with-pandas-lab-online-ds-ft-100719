@@ -20,15 +20,142 @@ Begin by importing `pandas` as `pd`, `numpy` as `np`, and `matplotlib.pyplot` as
 
 
 ```python
-#Your code here
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
 ```
 
 Next, read in the data from `titanic.csv` and store it as a DataFrame in `df`. Display the `.head()` to ensure that everything loaded correctly.
 
 
 ```python
-df = None
+df = pd.read_csv('titanic.csv')
+df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ## Slicing DataFrames Using Conditional Logic
 
@@ -43,12 +170,156 @@ Be sure to preview values first to ensure proper encoding when slicing
 
 ```python
 #Preview values first to ensure proper encoding when slicing
+# foo_df = bar_df[bar_df[bar_df['Col_1'] > bar_df['Col_2']]]
+df.Pclass
 ```
+
+
+
+
+    0      3
+    1      1
+    2      3
+    3      1
+    4      3
+          ..
+    886    2
+    887    1
+    888    ?
+    889    1
+    890    3
+    Name: Pclass, Length: 891, dtype: object
+
+
 
 
 ```python
-no_first_class_df = None
+no_first_class_df = df[df['Pclass'] != '1']
+no_first_class_df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>7</td>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 We can also chain conditional statements together by wrapping them in parenthesis and making use of the `&` and `|` operators ('and' and 'or' operators, respectively).
 
@@ -56,8 +327,132 @@ In the cell below, slice the DataFrame so that it only contains passengers with 
 
 
 ```python
-fares_50_to_100_df = None
+fares_50_to_100_df = df[(df['Fare'] >= 50) & (df['Fare'] <= 100)]
+fares_50_to_100_df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>6</td>
+      <td>7</td>
+      <td>0</td>
+      <td>1</td>
+      <td>McCarthy, Mr. Timothy J</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17463</td>
+      <td>51.8625</td>
+      <td>E46</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>34</td>
+      <td>35</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Meyer, Mr. Edgar Joseph</td>
+      <td>male</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17604</td>
+      <td>82.1708</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>35</td>
+      <td>36</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Holverson, Mr. Alexander Oskar</td>
+      <td>male</td>
+      <td>42.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113789</td>
+      <td>52.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 We could go further and then preview the Fare column of this new subsetted DataFrame:
 
@@ -77,7 +472,7 @@ plt.title('Distribution of Fares')
 
 
 
-![png](index_files/index_10_1.png)
+![png](output_10_1.png)
 
 
 Remember that there are two syntactically correct ways to access a column in a DataFrame.  For instance, `df['Name']` and `df.Name` return the same thing.  
@@ -87,17 +482,159 @@ In the cell below, use the dot notation syntax and slice a DataFrame that contai
 
 ```python
 # Checking column names for reference
+df.columns 
 ```
+
+
+
+
+    Index(['Unnamed: 0', 'PassengerId', 'Survived', 'Pclass', 'Name', 'Sex', 'Age',
+           'SibSp', 'Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked'],
+          dtype='object')
+
+
 
 
 ```python
 # Checking Column values to hardcode query below
+df.Sex.unique()
 ```
+
+
+
+
+    array(['male', 'female'], dtype=object)
+
+
 
 
 ```python
-poor_male_survivors_df = None
+poor_male_survivors_df = df.loc[(df.Sex == 'male') & (df.Pclass != '1')]
+poor_male_survivors_df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>7</td>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>12</td>
+      <td>13</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Saundercock, Mr. William Henry</td>
+      <td>male</td>
+      <td>20.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>A/5. 2151</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 Great! Now that you've reviewed the methods for slicing a DataFrame for querying our data, let's explore a sample use case.  
 
@@ -112,9 +649,132 @@ Additionally, create a DataFrame that contains only adult male passengers over t
 
 
 ```python
-women_and_children_df = None
-male_all_ages_df = None
+women_and_children_df = df[(df.Sex == 'female') | (df.Age <= 15)]
+male_all_ages_df = df[(df.Sex == 'male') & (df.Age > 15)]
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>7</td>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>8</td>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 Great! Now, you can use the `matplotlib` functionality built into the DataFrame objects to quickly create visualizations of the `Survived` column for each DataFrame.  
 
@@ -122,8 +782,33 @@ In the cell below, create histogram visualizations of the `Survived` column for 
 
 
 ```python
-# Your code here
+fig, axes = plt.subplots(ncols=2, nrows=1, figsize=(18, 8))
+
+ax_left = axes[0]
+women_and_children_df.Survived.hist(ax=ax_left, color='purple')
+ax_left.set_title('Women and Children 15 and under')
+ax_left.set_xlabel('Survived')
+ax_left.set_ylabel('Count')
+
+ax_right = axes[1]
+male_all_ages_df.Survived.hist(ax=ax_right, color='green')
+ax_right.set_title('Adult Males Over 15')
+ax_right.set_xlabel('Survived')
+ax_right.set_ylabel('Count')
+
+
 ```
+
+
+
+
+    Text(0, 0.5, 'Count')
+
+
+
+
+![png](output_18_1.png)
+
 
 Well that seems like a pretty stark difference--it seems that there was drastically different behavior between the groups!  Now, let's repeat the same process, but separating rich and poor passengers.  
 
@@ -131,16 +816,38 @@ In the cell below, create one DataFrame containing First Class passengers (`Pcla
 
 
 ```python
-first_class_df = None
-second_third_class_df = None
+first_class_df = df[df.Pclass=='1']
+second_third_class_df = df[df.Pclass!='1']
 ```
 
 Now, create histograms of the surivival for each subgroup, just as you did above.  
 
 
 ```python
-# Your code here
+fig, axes = plt.subplots(ncols=2, nrows=1, figsize=(18, 8))
+ax_left = axes[0]
+first_class_df.Survived.hist(ax=ax_left, color='yellow')
+ax_left.set_title('First Class')
+ax_left.set_xlabel('Survived')
+ax_left.set_ylabel('Count')
+
+ax_right = axes[1]
+second_third_class_df.Survived.hist(ax=ax_right, color='black')
+ax_right.set_title('Everyone Else')
+ax_right.set_xlabel('Survived')
+ax_right.set_ylabel('Count')
 ```
+
+
+
+
+    Text(0, 0.5, 'Count')
+
+
+
+
+![png](output_22_1.png)
+
 
 To the surprise of absolutely no one, it seems like First Class passengers were more likely to survive than not, while 2nd and 3rd class passengers were more likely to die than not.  However, don't read too far into these graphs, as these aren't at the same scale, so they aren't fair comparisons.  
 
@@ -154,10 +861,137 @@ In the cell below, use the `.query()` method to slice a DataFrame that contains 
 
 
 ```python
-query_string = None
-high_passenger_number_df = None
-# high_passenger_number_df.head()
+query_string = 'PassengerId >= 500'
+print(query_string)
+high_passenger_number_df = df.query(query_string)
+high_passenger_number_df.head()
 ```
+
+    PassengerId >= 500
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>499</td>
+      <td>499</td>
+      <td>500</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Svensson, Mr. Olof</td>
+      <td>male</td>
+      <td>24.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>350035</td>
+      <td>7.7958</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>500</td>
+      <td>501</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Calic, Mr. Petar</td>
+      <td>male</td>
+      <td>17.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>315086</td>
+      <td>8.6625</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>501</td>
+      <td>501</td>
+      <td>502</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Canavan, Miss. Mary</td>
+      <td>female</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>364846</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <td>502</td>
+      <td>502</td>
+      <td>503</td>
+      <td>0</td>
+      <td>3</td>
+      <td>O'Sullivan, Miss. Bridget Mary</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330909</td>
+      <td>7.6292</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <td>503</td>
+      <td>503</td>
+      <td>504</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Laitinen, Miss. Kristina Sofia</td>
+      <td>female</td>
+      <td>37.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4135</td>
+      <td>9.5875</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 Just as with slicing, you can pass in queries with multiple conditions.  One unique difference between using the `.query()` method and conditional slicing is that you can use `and` or `&` as well as `or` or `|` (for fun, try reading this last sentence out loud), while you are limited to the `&` and `|` symbols to denote and/or operations with conditional slicing.  
 
@@ -167,9 +1001,132 @@ In the cell below, use the `query()` method to return a DataFrame that contains 
 
 
 ```python
-female_children_df = None
-# female_children_df.head()
+female_children_df = df.query("Sex == 'female' or Age <= 15")
+female_children_df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>7</td>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>8</td>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 A cousin of the `query()` method, `eval()` allows you to use the same string-filled syntax as querying for creating new columns.  For instance:
 
@@ -183,9 +1140,138 @@ In the cell below, use the DataFrame's `eval()` method in place to add a column 
 
 
 ```python
-# df = 
-# df.head()
+df = df.eval('Age_x_Fare = Age*Fare')
+df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>Age_x_Fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>159.5000</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+      <td>2708.7654</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>206.0500</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+      <td>1858.5000</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>281.7500</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 Great! Now, let's move on the coolest part of this lab--querying DataFrames with SQL!
 
@@ -197,7 +1283,7 @@ If you're using the pre-built virtual environment, you should already have the p
 
 
 ```python
-# !pip install pandasql
+#!pip install pandasql
 ```
 
 That should have installed everything correctly. This library has a few dependencies, which you should already have installed. If you don't, just `pip install` them in your terminal and you'll be good to go!
@@ -206,7 +1292,7 @@ In the cell below, import `sqldf` from `pandasql`.
 
 
 ```python
-# Your code here
+from pandasql import sqldf
 ```
 
 Great! Now, it's time to get some practice with this handy library.
@@ -217,7 +1303,7 @@ In the cell below, create a variable called `pysqldf` and set it equal to a lamb
 
 
 ```python
-pysqldf = None
+pysqldf = lambda q: sqldf(q, globals())
 ```
 
 Great! That will save you from having to pass `globals()` as an argument every time you query, which can get a bit tedious.  
@@ -234,11 +1320,82 @@ In the cell below, write a SQL query that returns the names of the first 10 pass
 
 
 ```python
-q = None
+q = "SELECT Name FROM df LIMIT 10"
 
-passenger_names = None
+passenger_names = pysqldf(q)
 passenger_names
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Braund, Mr. Owen Harris</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Heikkinen, Miss. Laina</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Allen, Mr. William Henry</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Moran, Mr. James</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>McCarthy, Mr. Timothy J</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 Great! Now, for a harder one:
 
@@ -246,11 +1403,82 @@ In the cell below, query the DataFrame for names and fares of any male passenger
 
 
 ```python
-q2 = None
+q2 = "SELECT Name, Fare FROM df WHERE Sex = 'male' AND Survived = 1 LIMIT 30;"
 
-sql_surviving_males = None
+sql_surviving_males = pysqldf(q)
 sql_surviving_males
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Braund, Mr. Owen Harris</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Heikkinen, Miss. Laina</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Allen, Mr. William Henry</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Moran, Mr. James</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>McCarthy, Mr. Timothy J</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 This library is really powerful! This makes it easy for us to leverage all of your SQL knowledge to quickly query any DataFrame, especially when you only want to select certain columns.  This saves from having to slice/query the DataFrame and then slice the columns you want (or drop the ones you don't want).
 
@@ -266,14 +1494,31 @@ Then, create a horizontal bar graph visualizations of the `Pclass` column for ea
 
 ```python
 # Write your queries in these variables to keep your code well-formatted and readable
-q3 = None
-q4 = None
+q3 = "SELECT Pclass, Count(*) from df where Sex = 'female' and Survived = 1 group by 1;"
+q4 = "SELECT Pclass, Count(*) from df where Sex = 'female' and Survived = 0 group by 1;"
 
-survived_females_by_pclass_df = None
-died_females_by_pclass_df = None
+female_survivors_by_pclass_df = pysqldf(q3)
+female_casualties_by_pclass_df = pysqldf(q4)
 
 # Create and label the histograms for each below!
+fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(18,8))
+female_survivors_by_pclass_df.set_index('Pclass')['Count(*)'].plot(kind='barh', ax=axes[0], color='blue')
+axes[0].set_title('Distribution of Female Survivors by Class')
+
+female_casualties_by_pclass_df.set_index('Pclass')['Count(*)'].plot(kind='barh', ax=axes[1], color='red')
+axes[1].set_title('Distribution of Female Casualties by Class')
 ```
+
+
+
+
+    Text(0.5, 1.0, 'Distribution of Female Casualties by Class')
+
+
+
+
+![png](output_42_1.png)
+
 
 ## Summary
 
